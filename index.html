@@ -1,0 +1,58 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="wide-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, harum cumque id inventore quaerat quia deserunt atque, minima delectus accusamus ipsa mollitia vel cum tempora incidunt explicabo sunt iste non?</div>
+    <div class="reg-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, harum cumque id inventore quaerat quia deserunt atque, minima delectus accusamus ipsa mollitia vel cum tempora incidunt explicabo sunt iste non?</div>
+    <div class="reg-content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime, harum cumque id inventore quaerat quia deserunt atque, minima delectus accusamus ipsa mollitia vel cum tempora incidunt explicabo sunt iste non?</div>
+
+    <h2>Planetary Information table</h2>
+
+    <table id="src">
+        <thead>
+           <tr><th></th>        <th>Mean Radius</th><th>Orbital Period</th>            <th>Aphelion</th>       <th>Perihelion</th>     <th>Semi-major Axis</th><th>Mean Density</th>        <th>Surface Gravity</th></tr>
+        </thead>
+        <tbody>
+           <tr><td>Mercury</td><td>2440 km</td>     <td>87.97 days / 0.24 year</td>    <td>70 million km</td>  <td>46 million km</td>  <td>58 million km</td>  <td>5.4 gram / cubic cm</td> <td>3.7 meter / second square</td></tr>
+           <tr><td>Venus</td>  <td>6052 km</td>     <td>224.7 days / 0.62 year</td>    <td>109 million km</td> <td>107 million km</td> <td>108 million km</td> <td>5.2 gram / cubic cm</td> <td>8.9 meter / second square</td></tr>
+           <tr><td>Mars</td>   <td>3390 km</td>     <td>687 days /  1.88 years</td>    <td>249 million km</td> <td>207 million km</td> <td>228 million km</td> <td>3.9 gram / cubic cm</td> <td>3.7 meter / second square</td></tr>
+           <tr><td>Jupiter</td><td>69911 km</td>    <td>4332.6 days / 11.86 years</td> <td>817 million km</td> <td>741 million km</td> <td>779 million km</td> <td>1.3 gram / cubic cm</td> <td>24.8 meter / second square</td></tr>
+           <tr><td>Saturn</td> <td>58232 km</td>    <td>10759.2 days / 29.46 years</td><td>1515 million km</td><td>1353 million km</td><td>1434 million km</td><td>0.69 gram / cubic cm</td><td>10.4 meter / second square</td></tr>
+           <tr><td>Neptune</td><td>24630 km</td>    <td>60182 days / 164.8 years</td>  <td>4540 million km</td><td>4460 million km</td><td>4500 million km</td><td>1.6 gram / cubic cm</td> <td>11.2 meter / second square</td></tr>
+        </tbody>
+        </table>
+        
+        <div id="tgt">
+        </div>
+
+        <script>
+            var tableRows = $("tr",$("#src"));
+            var  tableTH = $("th", tableRows[0]);
+            var firstUL, firstLI, secondUL, secondLI;
+            var c1, c2;
+
+            firstUL = $("<ul></ul>");
+
+            for (c1 = 1; c1<tableRows.length; c1++){
+                firstLI = $("<li></li>").html("<h3>"+$("td:eq(0)", tableRows[c1]).text()+"</h3>");
+            
+             secondUL = $("<ul></ul>");
+             for (c2 = 1; c2 < tableTH.length; c2++){
+                 secondLI = $("<li></li>").html(tableTH[c2].innerText+": "+$("td:eq("+c2+")", tableRows[c1]).text());
+                 secondUL.append(secondLI);
+             }
+             firstLI.append(secondUL);
+                firstUL.append(firstLI);
+            }
+                $("#tgt").append(firstUL);
+            
+           
+            </script>
+</body>
+</html>
